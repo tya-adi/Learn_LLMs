@@ -1,0 +1,26 @@
+import gensim.downloader as api
+model = api.load("word2vec-google-news-300")
+
+# Using this library to understand how semantics work
+
+word_vectors=model
+
+# Every token is represented here by 300 dimensions
+
+print(len(word_vectors['computer']))
+
+# King - Man + Woman = Queen, prints top 10 similarities of expression
+
+print(word_vectors.most_similar(positive=['king', 'woman'], negative=['man'], topn=10))
+
+# Example of calculating similarity
+
+# Similar words give higher similarity.
+print(word_vectors.similarity('woman', 'man'))
+print(word_vectors.similarity('king', 'queen'))
+print(word_vectors.similarity('uncle', 'aunt'))
+print(word_vectors.similarity('boy', 'girl'))
+print(word_vectors.similarity('nephew', 'niece'))
+print(word_vectors.similarity('paper', 'water'))
+
+print(word_vectors.similarity('river', 'fountain'))
